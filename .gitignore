@@ -19,7 +19,7 @@ project/plugins/project/
 # Scala-IDE specific
 .scala_dependencies
 .worksheet
-.idea
+.idea/
 
 # ENSIME specific
 .ensime_cache/
@@ -35,29 +35,4 @@ project/boot/
 .history
 .cache
 
-test*.*
-tickers.csv
-pixall-config.properties
-example/archive
-example/failed
-example/inbox
-example/outbox
-example/work
-companylist.json
-example/incoming/
-scratch/
-aws-s3.properties
-example/scripts/pixall.sql
-1495582154423.json
-1495582940879.json
-report-data.csv
-report-info.csv
-report-info.xlsx
-bower_components/
-companyinfo.txt
-fixed-data.txt
-data
-fixed-data.csv
-tmp
-.idea/
 node_modules/

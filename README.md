@@ -26,6 +26,10 @@ The rules for seating the student is the following:
 2. The closest student must be as far away as possible
 3. Ties can be resolved by choosing the lowest-numbered seat.
   
+#### Maze
+
+Find the shortest distance through a 10x10 maze.   
+  
 #### PageVisits
 
 You are given logs that contain user and page visits for a given day.
