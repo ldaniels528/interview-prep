@@ -36,13 +36,6 @@ object ClassRoom extends App {
     index
   }
 
-  def remove_student(student_id: Student): Boolean = seats.indexWhere(_.contains(student_id)) match {
-    case -1 => false
-    case index =>
-      seats(index) = None
-      true
-  }
-
   def findEmptySeat: Option[Seat] = {
     // get the collections of occupied and unoccupied seats
     val (occupiedSeats, emptySeats) = seats.zipWithIndex.partition { case (student, _) => student.nonEmpty } match {
@@ -62,6 +55,13 @@ object ClassRoom extends App {
       // return the seat furthest way from other all students
       candidateSeats.headOption.map(_._1)
     }
+  }
+
+  def remove_student(student_id: Student): Boolean = seats.indexWhere(_.contains(student_id)) match {
+    case -1 => false
+    case index =>
+      seats(index) = None
+      true
   }
 
   def show(): Unit = {

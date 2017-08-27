@@ -8,10 +8,12 @@ package com.github.ldaniels528.interview.prep
   * "{[](}" is not a well formed bracket string
   *
   * Needless to say any single brackets are automatically counted as not well formed
-  *
   * @see https://www.careercup.com/question?id=5762451793510400
   */
 object BracketChecker extends App {
+  private val brackets = Seq(
+    ('{', '}'), ('[', ']'), ('(', ')')
+  )
 
   val strings = Seq("{({})[]}" -> true, "{[](}" -> false)
   strings foreach { case (string, expected) =>
@@ -19,14 +21,8 @@ object BracketChecker extends App {
     assert(isValid(string) == expected)
   }
 
-  def isValid(string: String): Boolean = {
-    val brackets = Seq(
-      ('{', '}'), ('[', ']'), ('(', ')')
-    )
-
-    brackets forall { case (startBracket, endBracket) =>
-      isValid(string, startBracket, endBracket)
-    }
+  def isValid(string: String): Boolean = brackets forall { case (startBracket, endBracket) =>
+    isValid(string, startBracket, endBracket)
   }
 
   def isValid(string: String, startBracket: Char, endBracket: Char): Boolean = {
@@ -36,7 +32,7 @@ object BracketChecker extends App {
       else if (c == endBracket) level -= 1
 
       // fail-safe
-      if(level < 0) return false
+      if (level < 0) return false
     }
     level == 0
   }
