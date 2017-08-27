@@ -54,16 +54,12 @@ object Maze extends App {
 
   def findStartingColumns: Seq[Int] = maze.head.zipWithIndex filter { case (cell, _) => cell == empty } map (_._2)
 
-  def show(): Unit = {
-    for {
-      row <- maze
-    } {
-      println(row map {
-        case 0 => "."
-        case 1 => "+"
-        case _ => "?"
-      } mkString " ")
-    }
+  def show(): Unit = for (row <- maze) {
+    println(row map {
+      case 0 => "."
+      case 1 => "+"
+      case _ => "?"
+    } mkString " ")
   }
 
   case class Actor(var column: Int, var row: Int = 0, var heading: Option[Direction] = None, var moves: Int = 0) {

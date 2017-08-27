@@ -11,7 +11,6 @@ package com.github.ldaniels528.interview.prep
   * 1) The seat must be unoccupied
   * 2) The closest student must be as far away as possible
   * 3) Ties can be resolved by choosing the lowest-numbered seat.
-  *
   * @see https://www.careercup.com/question?id=5730243296886784
   */
 object ClassRoom extends App {
@@ -32,20 +31,16 @@ object ClassRoom extends App {
   show()
 
 
-  def add_student(student_id: Student): Option[Seat] = {
-    findEmptySeat map { index =>
-      seats(index) = Some(student_id)
-      index
-    }
+  def add_student(student_id: Student): Option[Seat] = findEmptySeat map { index =>
+    seats(index) = Some(student_id)
+    index
   }
 
-  def remove_student(student_id: Student): Boolean = {
-    seats.indexWhere(_.contains(student_id)) match {
-      case -1 => false
-      case index =>
-        seats(index) = None
-        true
-    }
+  def remove_student(student_id: Student): Boolean = seats.indexWhere(_.contains(student_id)) match {
+    case -1 => false
+    case index =>
+      seats(index) = None
+      true
   }
 
   def findEmptySeat: Option[Seat] = {

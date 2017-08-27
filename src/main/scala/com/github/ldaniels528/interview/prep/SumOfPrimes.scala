@@ -22,18 +22,16 @@ object SumOfPrimes extends App {
     sum
   }
 
-  def isPrime(number: Int): Boolean = {
-    number match {
-      case n if n < 2 => false
-      case 2 => true
-      case _ =>
-        var n = 1
-        while (n < number / n) {
-          n += 1
-          if (number % n == 0) return false
-        }
-        true
-    }
+  def isPrime(number: Int): Boolean = number match {
+    case n if n < 2 => false
+    case 2 => true
+    case _ =>
+      var n = 1
+      while (n < number / n) {
+        n += 1
+        if (number % n == 0) return false
+      }
+      true
   }
 
 }
