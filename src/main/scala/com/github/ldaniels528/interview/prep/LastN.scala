@@ -1,11 +1,11 @@
 package com.github.ldaniels528.interview.prep
 
 /**
-  * Write a program that keeps the last 5 largest number in a stream of numbers
+  * Write a program that keeps the last 5 largest numbers from a stream of numbers
   */
 object LastN extends App {
 
-  val numbers = Seq(23, 5, 11, 83, 17, 31, 19, 43, 51, 7, 111)
+  val numbers = Seq(23, 5, 11, 83, 17, 31, 19, 43, 51, 7, 111, 61)
 
   val buffer = new Array[Int](5)
   for (n <- numbers) check(n)
