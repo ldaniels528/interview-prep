@@ -1,4 +1,4 @@
-package com.github.ldaniels528.interview.prep
+package com.github.ldaniels528.interview.scalaprep
 
 /**
   * Write an algorithm to compute the derivative of a polynomial

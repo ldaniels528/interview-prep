@@ -1,4 +1,4 @@
-package com.github.ldaniels528.interview.prep
+package com.github.ldaniels528.interview.scalaprep
 
 /**
   * Write a program that keeps the last 5 largest numbers from a stream of numbers

@@ -1,4 +1,4 @@
-package com.github.ldaniels528.interview.prep
+package com.github.ldaniels528.interview.scalaprep
 
 /**
   * You are in charge of a classroom which has n seats in a single row, numbered 0 through n-1.

@@ -1,4 +1,4 @@
-package com.github.ldaniels528.interview.prep
+package com.github.ldaniels528.interview.scalaprep
 
 /**
   * Implement a function that returns whether a string made of different bracket characters is well formed or not.
