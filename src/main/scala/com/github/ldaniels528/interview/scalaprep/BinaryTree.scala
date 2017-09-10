@@ -8,14 +8,17 @@ object BinaryTree extends App {
   val random = new Random()
   val tree = new BSTree[Integer]()
   for (_ <- 1 to 10) tree.add(random.nextInt(100))
-  tree.ascending() foreach (v => println(v))
+  tree.ascending foreach (v => println(v))
   println("*" * 20)
-  tree.descending() foreach (v => println(v))
+  tree.descending foreach (v => println(v))
   println("*" * 20)
-  println(s"max: ${tree.max()}")
-  println(s"min: ${tree.min()}")
+  println(s"max: ${tree.max}")
+  println(s"min: ${tree.min}")
   println(s"3rd largest: ${tree.nthLargest(3)}")
   println(s"3rd smallest: ${tree.nthSmallest(3)}")
+  println(s"tree.nthLargest(5).exists(tree.contains)? ${tree.nthLargest(5).exists(tree.contains)}")
+  println(s"tree.contains(-1)? ${tree.contains(-1)}")
+
 
   class BSTree[T <: Comparable[T]]() {
     private var root: BSTNode[T] = _
@@ -24,29 +27,33 @@ object BinaryTree extends App {
       if (root == null) root = BSTNode(value) else append(value, root)
     }
 
-    def ascending(node: BSTNode[T] = root): Stream[T] = {
-      if (node == null) Stream.empty else ascending(node.left) #::: node.value #:: ascending(node.right)
+    def ascending: Stream[T] = ascending(root)
+
+    def contains(value: T): Boolean = {
+      var node = root
+      while (node != null) {
+        value.compareTo(node.value) match {
+          case r if r < 0 => node = node.left
+          case r if r > 0 => node = node.right
+          case _ => return true
+        }
+      }
+      false
     }
 
-    def descending(node: BSTNode[T] = root): Stream[T] = {
-      if (node == null) Stream.empty else descending(node.right) #::: node.value #:: descending(node.left)
-    }
+    def descending: Stream[T] = descending(root)
 
-    def max(node: BSTNode[T] = root): Option[T] = {
-      if (node == null) None else max(node.right) ?? Option(node.value) ?? max(node.left)
-    }
+    def max: Option[T] = max(root)
 
-    def min(node: BSTNode[T] = root): Option[T] = {
-      if (node == null) None else min(node.left) ?? Option(node.value) ?? min(node.right)
-    }
+    def min: Option[T] = min(root)
 
     def nthLargest(nth: Int): Option[T] = {
-      val list = descending().take(nth)
+      val list = descending.take(nth)
       if (list.size < nth) None else list.lastOption
     }
 
     def nthSmallest(nth: Int): Option[T] = {
-      val list = ascending().take(nth)
+      val list = ascending.take(nth)
       if (list.size < nth) None else list.lastOption
     }
 
@@ -57,6 +64,22 @@ object BinaryTree extends App {
         case r if r > 0 => if (node.right != null) append(value, node.right) else node.right = BSTNode(value)
         case _ =>
       }
+    }
+
+    private def ascending(node: BSTNode[T]): Stream[T] = {
+      if (node == null) Stream.empty else ascending(node.left) #::: node.value #:: ascending(node.right)
+    }
+
+    private def descending(node: BSTNode[T]): Stream[T] = {
+      if (node == null) Stream.empty else descending(node.right) #::: node.value #:: descending(node.left)
+    }
+
+    private def max(node: BSTNode[T]): Option[T] = {
+      if (node == null) None else max(node.right) ?? Option(node.value) ?? max(node.left)
+    }
+
+    private def min(node: BSTNode[T]): Option[T] = {
+      if (node == null) None else min(node.left) ?? Option(node.value) ?? min(node.right)
     }
 
   }
