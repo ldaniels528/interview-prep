@@ -21,7 +21,7 @@ object NonArithmeticAddition extends App {
 
   println(s"$num0 + $num1 = ${add(num0, num1)}")
 
-  def add(n0: Int, n1: Int) = {
+  def add(n0: Int, n1: Int): Int = {
     var x = n0
     var y = n1
     while (y != 0) {
