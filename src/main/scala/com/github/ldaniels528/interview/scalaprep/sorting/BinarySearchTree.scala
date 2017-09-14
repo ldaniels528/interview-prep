@@ -1,9 +1,12 @@
-package com.github.ldaniels528.interview.scalaprep
+package com.github.ldaniels528.interview.scalaprep.sorting
 
 import scala.annotation.tailrec
 import scala.util.Random
 
-object BinaryTree extends App {
+/**
+  * Binary Search Tree
+  */
+object BinarySearchTree extends App {
 
   val random = new Random()
   val tree = new BSTree[Integer]()
@@ -24,7 +27,7 @@ object BinaryTree extends App {
     private var root: BSTNode[T] = _
 
     def add(value: T): Unit = {
-      if (root == null) root = BSTNode(value) else append(value, root)
+      if (root == null) root = BSTNode(value) else attach(value, root)
     }
 
     def ascending: Stream[T] = ascending(root)
@@ -58,10 +61,10 @@ object BinaryTree extends App {
     }
 
     @tailrec
-    private def append(value: T, node: BSTNode[T]): Unit = {
+    private def attach(value: T, node: BSTNode[T]): Unit = {
       value.compareTo(node.value) match {
-        case r if r < 0 => if (node.left != null) append(value, node.left) else node.left = BSTNode(value)
-        case r if r > 0 => if (node.right != null) append(value, node.right) else node.right = BSTNode(value)
+        case r if r < 0 => if (node.left != null) attach(value, node.left) else node.left = BSTNode(value)
+        case r if r > 0 => if (node.right != null) attach(value, node.right) else node.right = BSTNode(value)
         case _ =>
       }
     }

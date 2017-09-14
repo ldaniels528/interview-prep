@@ -21,8 +21,8 @@ public class NonArithmeticAddition {
     // carry = (0011 & 1000) << 1 => 0000
     // x = 0011 ^ 1000 => 1011
     // y = 0000
-    
-    public static int add(final int n0, final int n1) {
+
+    private static int add(final int n0, final int n1) {
         int x = n0;
         int y = n1;
         while (y > 0) {

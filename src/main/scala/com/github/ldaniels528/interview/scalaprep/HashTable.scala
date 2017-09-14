@@ -1,5 +1,8 @@
 package com.github.ldaniels528.interview.scalaprep
 
+/**
+  * Builds a simple hash table implementation
+  */
 object HashTable extends App {
 
   val map = new HashType[String, String](10)
