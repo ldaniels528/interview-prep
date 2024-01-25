@@ -36,3 +36,4 @@ project/boot/
 .cache
 
 node_modules/
+.bsp/sbt.json
