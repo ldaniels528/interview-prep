@@ -55,7 +55,7 @@ object PageVisits extends App {
     println(s"User '$user' visited '$page' at least 20 (${views.length}) times on $date")
   }
 
-  private def generateData(totalUsers: Int, totalPageViews: Int) = {
+  private def generateData(totalUsers: Int, totalPageViews: Int): Seq[PageView] = {
     val sdf = new SimpleDateFormat("MM/dd/yyyy")
     val users = (1 to totalUsers).map(n => s"u$n")
     for {

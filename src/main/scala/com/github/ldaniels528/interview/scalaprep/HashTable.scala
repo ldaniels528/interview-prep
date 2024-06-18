@@ -21,7 +21,7 @@ object HashTable extends App {
 
     def contains(key: K): Boolean = {
       val index = key.hashCode() % buckets.length
-      val bucket = Option(buckets(index)) getOrElse Nil
+      val bucket = buckets(index)
       bucket.exists(_.key == key)
     }
 
@@ -37,7 +37,7 @@ object HashTable extends App {
 
     def put(key: K, value: V): Option[V] = {
       val index = key.hashCode() % buckets.length
-      val bucket = Option(buckets(index)) getOrElse Nil
+      val bucket = buckets(index)
       val entry_? = bucket.find(_.key == key)
       val previous_? = entry_?.map(_.value)
       entry_? match {
@@ -51,6 +51,6 @@ object HashTable extends App {
 
   }
 
-  case class HashEntry[K, V](key: K, var value: V)
+  private case class HashEntry[K, V](key: K, var value: V)
 
 }

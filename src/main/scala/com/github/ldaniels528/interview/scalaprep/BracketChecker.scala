@@ -15,17 +15,17 @@ object BracketChecker extends App {
     ('{', '}'), ('[', ']'), ('(', ')')
   )
 
-  val strings = Seq("{({})[]}" -> true, "{[](}" -> false)
+  private val strings = Seq("{({})[]}" -> true, "{[](}" -> false)
   strings foreach { case (string, expected) =>
     println(s""" "$string" should be $expected """)
     assert(isValid(string) == expected)
   }
 
-  def isValid(string: String): Boolean = brackets forall { case (startBracket, endBracket) =>
+  private def isValid(string: String): Boolean = brackets forall { case (startBracket, endBracket) =>
     isValid(string, startBracket, endBracket)
   }
 
-  def isValid(string: String, startBracket: Char, endBracket: Char): Boolean = {
+  private def isValid(string: String, startBracket: Char, endBracket: Char): Boolean = {
     var level = 0
     string foreach { c =>
       if (c == startBracket) level += 1

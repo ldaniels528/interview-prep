@@ -16,8 +16,8 @@ package com.github.ldaniels528.interview.scalaprep
 object ClassRoom extends App {
   private val seats: Array[Option[Student]] = (0 until 10).map(_ => None).toArray
 
-  type Seat = Int
-  type Student = Int
+  private type Seat = Int
+  private type Student = Int
 
   add_student(1)
   add_student(2)
@@ -31,12 +31,12 @@ object ClassRoom extends App {
   show()
 
 
-  def add_student(student_id: Student): Option[Seat] = findEmptySeat map { index =>
+  private def add_student(student_id: Student): Option[Seat] = findEmptySeat map { index =>
     seats(index) = Some(student_id)
     index
   }
 
-  def findEmptySeat: Option[Seat] = {
+  private def findEmptySeat: Option[Seat] = {
     // get the collections of occupied and unoccupied seats
     val (occupiedSeats, emptySeats) = seats.zipWithIndex.partition { case (student, _) => student.nonEmpty } match {
       case (occupied, empty) => (occupied.map(_._2), empty.map(_._2))
@@ -57,7 +57,7 @@ object ClassRoom extends App {
     }
   }
 
-  def remove_student(student_id: Student): Boolean = seats.indexWhere(_.contains(student_id)) match {
+  private def remove_student(student_id: Student): Boolean = seats.indexWhere(_.contains(student_id)) match {
     case -1 => false
     case index =>
       seats(index) = None
